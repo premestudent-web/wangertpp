@@ -1,0 +1,702 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday, Dad!</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green: #246B45;
+      --light-green: #D9E9B8;
+      --lime: #B9D66B;
+      --yellow: #F6D768;
+      --cream: #FFF9E9;
+      --dark: #203B2B;
+      --white: #FFFFFF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: none;
+      position: relative;
+      overflow: hidden;
+      padding: 30px 20px;
+    }
+
+    .page.active {
+      display: flex;
+      animation: appear 0.6s ease;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .page-one {
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 10% 15%, #F6D768 0 7%, transparent 7.5%),
+        radial-gradient(circle at 90% 85%, #B9D66B 0 10%, transparent 10.5%),
+        var(--light-green);
+    }
+
+    .hero {
+      width: min(100%, 1050px);
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      align-items: center;
+      gap: 45px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--dark);
+      padding: 9px 16px;
+      border: 2px solid var(--dark);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      transform: rotate(-3deg);
+      margin-bottom: 24px;
+    }
+
+    h1, h2, h3 {
+      font-family: "Playfair Display", Georgia, serif;
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 7vw, 88px);
+      line-height: 0.98;
+      letter-spacing: -3px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: var(--green);
+    }
+
+    .hero-description {
+      max-width: 420px;
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+
+    .primary-button {
+      border: 2px solid var(--dark);
+      background: var(--green);
+      color: var(--white);
+      padding: 15px 25px;
+      border-radius: 999px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      box-shadow: 5px 5px 0 var(--dark);
+      transition: 0.2s;
+    }
+
+    .primary-button:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 3px 3px 0 var(--dark);
+    }
+
+    .photo-area {
+      position: relative;
+      max-width: 420px;
+      width: 100%;
+      justify-self: center;
+    }
+
+    .photo-frame {
+      width: 100%;
+      height: 490px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      border: 7px solid var(--white);
+      border-radius: 210px 210px 24px 24px;
+      box-shadow: 10px 10px 0 var(--green);
+      background: var(--yellow);
+    }
+
+    .photo-sticker {
+      position: absolute;
+      bottom: 30px;
+      left: -35px;
+      background: var(--yellow);
+      border: 2px solid var(--dark);
+      padding: 15px 18px;
+      border-radius: 15px;
+      font-weight: 800;
+      transform: rotate(-7deg);
+      box-shadow: 3px 3px 0 var(--dark);
+    }
+
+    .decor {
+      position: absolute;
+      font-size: 35px;
+      pointer-events: none;
+    }
+
+    .decor-one {
+      top: 9%;
+      right: 8%;
+      transform: rotate(15deg);
+    }
+
+    .decor-two {
+      bottom: 8%;
+      left: 6%;
+      transform: rotate(-15deg);
+    }
+
+    .page-two {
+      align-items: center;
+      justify-content: center;
+      background: var(--yellow);
+    }
+
+    .envelope-scene {
+      text-align: center;
+      width: min(100%, 620px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .small-label {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 4px;
+      margin-bottom: 16px;
+    }
+
+    .envelope-scene h2 {
+      font-size: clamp(38px, 6vw, 65px);
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .envelope-scene > p {
+      font-size: 15px;
+      margin-bottom: 34px;
+    }
+
+    .envelope {
+      position: relative;
+      width: min(100%, 390px);
+      height: 245px;
+      margin: 0 auto 35px;
+      background: #F4E6BD;
+      border: 3px solid var(--dark);
+      border-radius: 8px;
+      box-shadow: 9px 9px 0 var(--green);
+      overflow: hidden;
+    }
+
+    .envelope-back {
+      position: absolute;
+      inset: 0;
+      background: #E6D39F;
+    }
+
+    .envelope-letter {
+      position: absolute;
+      width: 82%;
+      height: 75%;
+      left: 9%;
+      top: 10%;
+      background: var(--white);
+      border: 2px solid var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 0.7s ease;
+    }
+
+    .envelope-letter span {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--green);
+    }
+
+    .envelope-letter small {
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .envelope-flap {
+      position: absolute;
+      inset: 0;
+      background: #D2B76E;
+      clip-path: polygon(0 0, 100% 0, 50% 62%);
+      border-bottom: 2px solid var(--dark);
+      z-index: 2;
+      transition: transform 0.6s ease, opacity 0.4s ease;
+      transform-origin: top center;
+    }
+
+    .envelope-front {
+      position: absolute;
+      inset: 0;
+      background: #F4E6BD;
+      clip-path: polygon(0 100%, 0 0, 50% 56%, 100% 0, 100% 100%);
+      z-index: 3;
+    }
+
+    .seal {
+      position: absolute;
+      z-index: 4;
+      left: 50%;
+      top: 52%;
+      transform: translate(-50%, -50%);
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--green);
+      color: var(--yellow);
+      border: 2px solid var(--dark);
+      font-size: 24px;
+    }
+
+    .envelope.open .envelope-flap {
+      transform: rotateX(180deg);
+      opacity: 0;
+    }
+
+    .envelope.open .envelope-letter {
+      transform: translateY(-65px);
+    }
+
+    .envelope.open .seal {
+      opacity: 0;
+    }
+
+    .page-three {
+      align-items: center;
+      justify-content: center;
+      background: var(--light-green);
+    }
+
+    .greeting-card {
+      width: min(100%, 900px);
+      display: grid;
+      grid-template-columns: 1fr 0.85fr;
+      background: var(--cream);
+      border: 3px solid var(--dark);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 10px 10px 0 var(--green);
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-copy {
+      padding: clamp(28px, 5vw, 55px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card-copy .eyebrow {
+      align-self: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .card-copy h2 {
+      font-size: clamp(35px, 5vw, 57px);
+      line-height: 1.08;
+      margin-bottom: 22px;
+    }
+
+    .card-copy h2 span {
+      color: var(--green);
+    }
+
+    .message {
+      font-size: 15px;
+      line-height: 1.95;
+      margin-bottom: 25px;
+      white-space: pre-line;
+    }
+
+    .signature {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 24px;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .card-photo-wrap {
+      padding: 24px;
+      background: var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-photo {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      border: 6px solid var(--white);
+      border-radius: 180px 180px 16px 16px;
+      box-shadow: 5px 5px 0 var(--dark);
+      background: var(--light-green);
+    }
+
+    .card-bottom {
+      margin-top: 25px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .secondary-button {
+      border: 2px solid var(--dark);
+      background: transparent;
+      color: var(--dark);
+      padding: 13px 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: 0.2s;
+    }
+
+    .secondary-button:hover {
+      background: var(--yellow);
+    }
+
+    .page-number {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      opacity: 0.7;
+    }
+
+    .confetti {
+      position: fixed;
+      top: -20px;
+      z-index: 10;
+      pointer-events: none;
+      animation: fall 3s linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(600deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .page {
+        padding: 55px 22px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        text-align: center;
+      }
+
+      .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .photo-area {
+        width: min(85%, 330px);
+      }
+
+      .photo-frame {
+        height: 360px;
+      }
+
+      .photo-sticker {
+        left: -20px;
+        bottom: 20px;
+      }
+
+      .greeting-card {
+        grid-template-columns: 1fr;
+      }
+
+      .card-copy {
+        order: 2;
+      }
+
+      .card-photo-wrap {
+        order: 1;
+        padding: 22px;
+      }
+
+      .card-photo {
+        height: 300px;
+        max-width: 300px;
+      }
+
+      .card-copy h2 {
+        font-size: 42px;
+      }
+
+      .page-number {
+        bottom: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- PAGE 1: BIRTHDAY INTRO -->
+  <section class="page page-one active" id="page1">
+    <span class="decor decor-one">✳</span>
+    <span class="decor decor-two">✿</span>
+
+    <div class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">TODAY IS YOUR DAY</div>
+
+        <h1>
+          Happy<br>
+          Birthday,
+          <span>Dad!</span>
+        </h1>
+
+        <p class="hero-description">
+          To the man who makes life warmer, happier, and full of love.
+          Today is all about celebrating you!
+        </p>
+
+        <button class="primary-button" onclick="goToPage(2)">
+          A LITTLE SURPRISE →
+        </button>
+      </div>
+
+      <div class="photo-area">
+        <img
+          src="dad.jpg"
+          alt="A photo of Dad"
+          class="photo-frame"
+        >
+        <div class="photo-sticker">BEST DAD EVER ♡</div>
+      </div>
+    </div>
+
+    <div class="page-number">01 — A SPECIAL DAY</div>
+  </section>
+
+
+  <!-- PAGE 2: OPEN THE LETTER -->
+  <section class="page page-two" id="page2">
+    <span class="decor decor-one">✳</span>
+    <span class="decor decor-two">♡</span>
+
+    <div class="envelope-scene">
+      <div class="small-label">MADE WITH LOVE</div>
+
+      <h2>A Little Letter<br>For You</h2>
+
+      <p>There's something special waiting inside...</p>
+
+      <div class="envelope" id="envelope">
+        <div class="envelope-back"></div>
+
+        <div class="envelope-letter">
+          <span>For Dad ♡</span>
+          <small>OPEN WITH LOVE</small>
+        </div>
+
+        <div class="envelope-flap"></div>
+        <div class="envelope-front"></div>
+        <div class="seal">♥</div>
+      </div>
+
+      <button class="primary-button" id="openButton" onclick="openLetter()">
+        OPEN IT ✉
+      </button>
+
+      <div style="margin-top: 18px;">
+        <button class="secondary-button" onclick="goToPage(1)">
+          ← GO BACK
+        </button>
+      </div>
+    </div>
+
+    <div class="page-number">02 — A LITTLE SURPRISE</div>
+  </section>
+
+
+  <!-- PAGE 3: BIRTHDAY CARD -->
+  <section class="page page-three" id="page3">
+    <span class="decor decor-one">✳</span>
+    <span class="decor decor-two">✿</span>
+
+    <div class="greeting-card">
+      <div class="card-copy">
+        <div class="eyebrow">WITH ALL MY LOVE</div>
+
+        <h2>
+          Happy Birthday,<br>
+          <span>My Favorite Dad.</span>
+        </h2>
+
+        <p class="message">Thank you for always being there for me, for your love, your care, and everything you do.
+
+I hope this new year of your life brings you lots of happiness, good health, laughter, and beautiful moments.
+
+You deserve all the good things in the world.
+
+Love you always, Dad! ♡</p>
+
+        <div class="signature">Love, always ♡</div>
+
+        <div class="card-bottom">
+          <button class="primary-button" onclick="celebrate()">
+            SEND YOU A HUG ♥
+          </button>
+
+          <button class="secondary-button" onclick="goToPage(1)">
+            START AGAIN ↻
+          </button>
+        </div>
+      </div>
+
+      <div class="card-photo-wrap">
+        <img
+          src="memory.jpg"
+          alt="A special memory with Dad"
+          class="card-photo"
+        >
+      </div>
+    </div>
+
+    <div class="page-number">03 — ALWAYS LOVED</div>
+  </section>
+
+
+  <script>
+    function goToPage(pageNumber) {
+      document.querySelectorAll(".page").forEach(function(page) {
+        page.classList.remove("active");
+      });
+
+      document.getElementById("page" + pageNumber)
+        .classList.add("active");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+      if (pageNumber === 2) {
+        const envelope = document.getElementById("envelope");
+        envelope.classList.remove("open");
+
+        document.getElementById("openButton").textContent = "OPEN IT ✉";
+      }
+    }
+
+    function openLetter() {
+      const envelope = document.getElementById("envelope");
+      const button = document.getElementById("openButton");
+
+      if (!envelope.classList.contains("open")) {
+        envelope.classList.add("open");
+        button.textContent = "READ MY MESSAGE ♥";
+
+        setTimeout(function() {
+          goToPage(3);
+          celebrate();
+        }, 1100);
+      } else {
+        goToPage(3);
+      }
+    }
+
+    function celebrate() {
+      const symbols = ["♥", "✦", "✿", "★", "♡"];
+      const colors = ["#246B45", "#F6D768", "#B9D66B", "#E98963"];
+
+      for (let i = 0; i < 45; i++) {
+        const piece = document.createElement("span");
+
+        piece.className = "confetti";
+        piece.textContent = symbols[
+          Math.floor(Math.random() * symbols.length)
+        ];
+
+        piece.style.left = Math.random() * 100 + "vw";
+        piece.style.color = colors[
+          Math.floor(Math.random() * colors.length)
+        ];
+        piece.style.fontSize = (14 + Math.random() * 20) + "px";
+        piece.style.animationDuration = (2 + Math.random() * 2) + "s";
+
+        document.body.appendChild(piece);
+
+        setTimeout(function() {
+          piece.remove();
+        }, 4500);
+      }
+    }
+  </script>
+
+</body>
+</html>
